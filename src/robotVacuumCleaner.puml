@@ -1,0 +1,28 @@
+@startmindmap
+'https://plantuml.com/mindmap-diagram
+
+caption figure 1
+title Robot Vacuum Cleaner
+
+* Cleaning the House
+** Main
+** Functions
+*** Clean the floor
+*** Move forward(is there an obstacle in front or not?)
+*** Turn left or right
+*** Turn off (after cleaning the room))
+** Room
+** Vacuum
+** Cleaning procedure
+
+header
+My super header
+endheader
+
+center footer My super footer
+
+legend right
+  Short
+  legend
+endlegend
+@endmindmap
