@@ -7,7 +7,6 @@ public class Room {
     private int initPosition;
     private int initRow;
     private int initCol;
-    private int position;
     private int row;
     private int col;
     private HashSet<String> cleanedParts = new HashSet();
@@ -17,7 +16,6 @@ public class Room {
         this.initPosition = initPosition;
         this.initRow = initRow;
         this.initCol = initCol;
-        this.position = initPosition;
         this.row = initRow;
         this.col = initCol;
         this.roomLayout = roomLayout;

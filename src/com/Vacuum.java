@@ -7,6 +7,19 @@ public class Vacuum extends Room implements Function{
     }
 
     @Override
+    public boolean turnOn() {
+        return false;
+    }
+
+    @Override
+    public boolean turnOff() {
+        if(getCleanedParts() == getRoomLayout()) {
+
+        }
+        return false;
+    }
+
+    @Override
     public void clean() {
         String cleanedPart = "(" + getRow() + "," + getCol() + ")";
         System.out.println("Cleaning " + cleanedPart);
