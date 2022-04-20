@@ -24,6 +24,7 @@ public class Vacuum extends Room implements Function{
 
             case 270:
         }
+        return false;
     }
 
     @Override
