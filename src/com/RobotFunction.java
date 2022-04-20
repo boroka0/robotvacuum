@@ -1,6 +1,6 @@
 package com;
 
-public interface Function {
+public interface RobotFunction {
     boolean turnOn();
     boolean turnOff();
 

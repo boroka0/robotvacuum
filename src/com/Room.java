@@ -33,11 +33,6 @@ public class Room {
         return initPosition;
     }
 
-    public void setinitPosition(int initPosition) {
-        this.initPosition = initPosition;
-        this.position = initPosition;
-    }
-
     public int getInitRow() {
         return initRow;
     }
@@ -54,14 +49,6 @@ public class Room {
     public void setInitCol(int initCol) {
         this.initCol = initCol;
         this.col = initCol;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
     }
 
     public int getRow() {
