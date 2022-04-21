@@ -1,7 +1,6 @@
 @startmindmap
 'https://plantuml.com/mindmap-diagram
 
-caption figure 1
 title Robot Vacuum Cleaner
 
 * Cleaning the House
@@ -15,14 +14,4 @@ title Robot Vacuum Cleaner
 ** Vacuum
 ** Cleaning procedure
 
-header
-My super header
-endheader
-
-center footer My super footer
-
-legend right
-  Short
-  legend
-endlegend
 @endmindmap
