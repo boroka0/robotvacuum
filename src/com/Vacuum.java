@@ -1,16 +1,17 @@
 package com;
 
+import javafx.util.Pair;
+
 import java.util.HashSet;
 import java.util.Set;
 
-public class Vacuum implements RobotFunction {
-    Set<String> cleanedParts = new HashSet<>();
-    boolean on = false;
 
-    public void cleanRoom(RobotFunction vacuum) {
-        int currDirection = 0;
-        backtrack(vacuum, cleanedParts, 0, 0, 0);
-    }
+public class Vacuum implements RobotFunction {
+    int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+    Set<Pair<Integer, Integer>> cleanedParts = new HashSet();
+    boolean on = false;
+    int battery = 100;
+    RobotFunction robot;
 
     public void moveBack() {
         turnLeft();
@@ -20,43 +21,27 @@ public class Vacuum implements RobotFunction {
         turnLeft();
     }
 
-    private void backtrack(RobotFunction vacuum, Set<String> cleanedParts, int row, int col, int currDirection) {
-
+    public void backtrack(int row, int col, int direction) {
+        cleanedParts.add(new Pair(row, col));
+        robot.clean();
         for (int i = 0; i < 4; i++) {
-            if (vacuum.move() == true) {
-                int newDirection = (currDirection + 1) % 4;
-                int x = row;
-                int y = col;
-                switch (currDirection) {
-                    case 0:
-                        // go up, reduce i
-                        x = row - 1;
-                        break;
-                    case 90:
-                        y = col + 1; // go right
-                        break;
-                    case 180:
-                        x = row + 1; // go down
-                        break;
-                    case 270:
-                        y = col - 1; // go left
-                        break;
-                    default:
-                        break;
-                }
+            int newDirection = (direction + i) % 4;
+            int newRow = row + directions[newDirection][0];
+            int newCol = col + directions[newDirection][1];
 
-                String coordinates = row + "_" + col;
-                if (cleanedParts.contains(coordinates)) {
-                    backtrack(vacuum, cleanedParts, row, col, currDirection);
-                    moveBack();
-                    vacuum.turnRight();
-                } else {
-                    vacuum.clean();
-                    cleanedParts.add(coordinates);
-                }
+            if (!cleanedParts.contains(new Pair(newRow, newCol)) && robot.move()) {
+                backtrack(newRow, newCol, newDirection);
+                moveBack();
             }
+            robot.turnRight();
         }
     }
+
+    public void cleanRoom(RobotFunction robot) {
+        this.robot = robot;
+        backtrack(0, 0, 0);
+    }
+
 
     @Override
     public boolean turnOn() {
@@ -65,6 +50,9 @@ public class Vacuum implements RobotFunction {
 
     @Override
     public boolean turnOff() {
+        if (battery < 1) {
+            return on = false;
+        }
         return on = false;
     }
 
