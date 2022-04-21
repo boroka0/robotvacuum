@@ -28,7 +28,7 @@ public class Vacuum implements RobotFunction {
             int newRow = row + directions[newDirection][0];
             int newCol = col + directions[newDirection][1];
 
-            if (!cleanedParts.contains(new Pair(newRow, newCol)) && move()) {
+            if (!cleanedParts.contains(new Pair(newRow, newCol)) && !move()) {
                 backtrack(newRow, newCol, newDirection);
                 moveBack();
             }
@@ -36,7 +36,7 @@ public class Vacuum implements RobotFunction {
         }
     }
 
-    public void cleanRoom(Vacuum robot) {
+    public void cleanRoom() {
         backtrack(0, 0, 0);
     }
 
