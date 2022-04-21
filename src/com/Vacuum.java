@@ -11,7 +11,6 @@ public class Vacuum implements RobotFunction {
     Set<Pair<Integer, Integer>> cleanedParts = new HashSet();
     boolean on = false;
     int battery = 100;
-    RobotFunction robot;
 
     public void moveBack() {
         turnLeft();
@@ -23,22 +22,21 @@ public class Vacuum implements RobotFunction {
 
     public void backtrack(int row, int col, int direction) {
         cleanedParts.add(new Pair(row, col));
-        robot.clean();
+        clean();
         for (int i = 0; i < 4; i++) {
             int newDirection = (direction + i) % 4;
             int newRow = row + directions[newDirection][0];
             int newCol = col + directions[newDirection][1];
 
-            if (!cleanedParts.contains(new Pair(newRow, newCol)) && robot.move()) {
+            if (!cleanedParts.contains(new Pair(newRow, newCol)) && move()) {
                 backtrack(newRow, newCol, newDirection);
                 moveBack();
             }
-            robot.turnRight();
+            turnRight();
         }
     }
 
-    public void cleanRoom(RobotFunction robot) {
-        this.robot = robot;
+    public void cleanRoom(Vacuum robot) {
         backtrack(0, 0, 0);
     }
 
